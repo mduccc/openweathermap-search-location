@@ -7,14 +7,27 @@ app.listen(port, ()=> {
     console.log('API running on port ' + port)
 })
 
+app.use('/', (req, res, next) => {
+    next()
+})
+
+app.use('/location', (req, res, next) => {
+    next()
+})
+
+app.get('/', (req, res) => {
+    res.write('Hello')
+    res.end()
+})
+
 app.get('/location', async (req, res) => {
-    let key_word_raw = req.query.key_word.trim()
+    let key_word_raw = req.query.key_word
     let key_word_trim = ''
 
     let result = []
     let code = 404
 
-    if (key_word_raw.trim().length == 0) {
+    if (typeof key_word_raw == 'undefined' || key_word_raw.trim().length == 0) {
         res.json({
             code: code,
             key_word: key_word_trim,
@@ -23,6 +36,8 @@ app.get('/location', async (req, res) => {
         res.end
         return 1
     }
+
+    key_word_raw = key_word_raw.trim()
 
     // trim space between two word
     let count_space = 0
