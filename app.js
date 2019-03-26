@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
-const port = 3100
+const port = 80
 
 app.listen(port, ()=> {
     console.log('API running on port ' + port)
