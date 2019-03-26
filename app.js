@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
-const port = 2100
+require('dotenv').config()
 
-app.listen(port, ()=> {
+let port = process.env.PORT
+
+app.listen(process.env.PORT, ()=> {
     console.log('API running on port ' + port)
 })
 
