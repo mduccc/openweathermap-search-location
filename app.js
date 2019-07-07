@@ -71,7 +71,7 @@ app.get('/location', async (req, res) => {
             key_word: key_word_trim,
             result: result
         })
-        res.end
+        res.end()
     })
     
 })
