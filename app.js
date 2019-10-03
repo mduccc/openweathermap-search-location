@@ -5,7 +5,7 @@ require('dotenv').config()
 
 let port = process.env.PORT
 
-app.listen(process.env.PORT, ()=> {
+app.listen(process.env.PORT, () => {
     console.log('API running on port ' + port)
 })
 
@@ -58,20 +58,20 @@ app.get('/location', async (req, res) => {
     await fs.readFile('./city/city.list.json', (err, json) => {
         let obj = JSON.parse(json)
 
-        for (let i=0; i<obj.length; i++) {
-            if (obj[i].name.toLowerCase().search(key_word_trim.toLowerCase()) > -1) 
+        for (let i = 0; i < obj.length; i++) {
+            if (obj[i].name.toLowerCase().search(key_word_trim.toLowerCase()) > -1)
                 result.push(obj[i])
         }
 
-        if (result.length != 0) 
+        if (result.length != 0)
             code = 200
 
         res.json({
             code: code,
-            key_word: key_word_trim,
+            key_word: eval(key_word_raw),
             result: result
         })
         res.end()
     })
-    
+
 })
